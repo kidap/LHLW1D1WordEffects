@@ -34,7 +34,7 @@ int main(int argc, const char * argv[]) {
       printf("\n\t(3)Canadianize");
       printf("\n\t(4)Respond");
       printf("\n\t(5)De-Space-It");
-      printf("\nEnter the number:");
+      printf("\nEnter the number: ");
       
       
       //Get the operation from the input
@@ -47,7 +47,7 @@ int main(int argc, const char * argv[]) {
       while ((tmp = getchar()) != '\n' && tmp != EOF);
       
       //Get the string
-      printf("Enter the string:");
+      printf("Enter the string: ");
       fgets(inputChars, 255, stdin);
       
       
@@ -55,14 +55,19 @@ int main(int argc, const char * argv[]) {
       NSString *inputString = [NSString stringWithUTF8String:inputChars];
       NSString *resultString = [[NSString alloc] init];
       
+      //Upper case
       if ([operationSelected isEqualToString:@"0"]){
         resultString = [inputString uppercaseString];
         NSLog(@"Input was %@", inputString);
         NSLog(@"The result of the operation is %@", resultString);
+        
+      //Lowercase
       } else if ([operationSelected isEqualToString:@"1"]){
         resultString = [inputString lowercaseString];
         NSLog(@"Input was %@", inputString);
         NSLog(@"The result of the operation is %@", resultString);
+        
+      //Convert to number
       } else if ([operationSelected isEqualToString:@"2"]){
         //inputString = []
         int resultNum = 0;
@@ -75,12 +80,14 @@ int main(int argc, const char * argv[]) {
           NSLog(@"Input was %@", inputString);
           NSLog(@"Input is not a number");
         }
-        
+      
+      //Canadianize
       } else if ([operationSelected isEqualToString:@"3"]){
         resultString = [inputString stringByAppendingString:@"eh!"];
         NSLog(@"Input was %@", inputString);
         NSLog(@"Result is %@", resultString);
         
+      //Respond
       } else if ([operationSelected isEqualToString:@"4"]){
         /*
          If the user input ends with a question mark, answer "I don't know".
@@ -96,26 +103,26 @@ int main(int argc, const char * argv[]) {
           NSLog(@"I don't know");
         }
         
-        
+      //Replace all spaces with '-'
       } else if ([operationSelected isEqualToString:@"5"]){
         resultString = [NSString stringWithString: inputString];
         resultString = [inputString stringByReplacingOccurrencesOfString:@" " withString:@"-"];
         NSLog(@"Input was %@", inputString);
         NSLog(@"Result is %@", resultString);
         
-        
+      //Invalid operation
       } else {
         printf("\nInvalid entered operation.");
         resultString = nil;      }
       
       
+      //Play again
       printf("\n\nDo you want do it again? ('Y' for yes)");
-      //scanf("%c", &play);
       fgets(play, 2, stdin);
       
       playAgain = [NSString stringWithUTF8String:play];
       
-      if ([playAgain isEqualToString:@"Y"]){
+      if ([playAgain isEqualToString:@"Y"] || [playAgain isEqualToString:@"y"]){
         continueplaying = 1;
       } else {
         continueplaying = 0;
